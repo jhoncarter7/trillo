@@ -10,6 +10,12 @@
     align-items: center;
     justify-content: center;
 
+    @media only screen and (max-width: $bp-smallest) {
+        order: 1;
+        flex: 0 0 100%;
+
+    }
+
     &_input {
         // height: 2.5rem;
         width: 90%;
@@ -120,14 +126,27 @@
     list-style: none;
     margin-top: 3rem;
 
+    @media only screen and (max-width: $bp-medium) {
+        display: flex;
+        margin: 0;
+    }
+
 
     &_iteam {
-        &:not(:last-child) {
-            margin-bottom: .5rem;
-        }
-
         position: relative;
 
+        &:not(:last-child) {
+            margin-bottom: .5rem;
+
+            @media only screen and (max-width: $bp-medium) {
+                margin-bottom: 0;
+
+            }
+        }
+
+        @media only screen and (max-width: $bp-medium) {
+            flex: 1;
+        }
 
     }
 
@@ -166,6 +185,19 @@
         align-items: center;
         position: relative;
         z-index: 100;
+
+        @media only screen and (max-width: $bp-medium) {
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        @media only screen and (max-width: $bp-small) {
+            flex-direction: column;
+
+        }
+        @media only screen and (max-width: $bp-smallest){
+            padding: 1.5rem 0;
+             }
     }
 
     &_icon {
@@ -173,6 +205,11 @@
         width: 1.75rem;
         margin-right: 1.5rem;
         fill: currentColor;
+
+        @media only screen and (max-width: $bp-small) {
+            margin-right: 0;
+            margin-bottom: .6rem;
+        }
     }
 }
 
@@ -184,6 +221,9 @@
     text-align: center;
     color: var(--color-grey-light-4);
 
+    @media only screen and (max-width: $bp-medium) {
+        display: none;
+    }
 
 }
 
@@ -230,6 +270,7 @@
         height: 1.75rem;
         fill: var(--color-primary);
 
+
     }
 
     &_location {
@@ -254,17 +295,30 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        @media only screen and (max-width: $bp-small) {
+            padding: 1rem;
+
+        }
     }
 
     &_rating-average {
         font-size: 2.3rem;
         font-weight: 300;
         margin-bottom: -3px;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.5rem;
+        }
     }
 
     &_rating-count {
         font-size: .9rem;
         text-transform: uppercase;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: .5rem;
+        }
     }
 }
 
@@ -361,16 +415,21 @@
         width: 1rem;
         margin-right: 1rem;
 
-        // ///older browser
-        // background-image: url(/img/chevron-thin-right.svg);
-        // background-size: cover;
+        ///older browser
+        background-image: url(/img/chevron-thin-right.svg);
+        background-size: cover;
 
         /////for new browser
-        background-color: var(--color-primary);
-        -webkit-mask-image: url(/img/chevron-thin-right.svg);
-        -webkit-mask-size: cover;
-        mask-image: url(/img/chevron-thin-right.svg);
-        mask-size: cover;
+        @supports ( -webkit-mask-image:url()) or  (mask-image:url()){ 
+
+            background-color: var(--color-primary);
+            -webkit-mask-image: url(/img/chevron-thin-right.svg);
+            -webkit-mask-size: cover;
+            mask-image: url(/img/chevron-thin-right.svg);
+            mask-size: cover;
+            background-image: none;
+
+        }
 
     }
 
@@ -383,6 +442,10 @@
 
     &_count {
         margin-right: auto;
+    }
+
+    &_friends {
+        display: flex;
     }
 
     &_photo {
@@ -408,6 +471,11 @@
     box-shadow: var(--shadow-light);
     position: relative;
     overflow: hidden;
+
+    @media only screen and (max-width: $bp-medium) {
+        padding: 2rem;
+        margin-bottom: 2.5rem;
+    }
 
     &_text {
         margin-bottom: 1rem;
@@ -479,7 +547,7 @@
 
 
 // /////////////////////////////////////
-////// booking of hotel button
+////// call to action by user
 
 
 .btn {
@@ -513,9 +581,9 @@
 
     }
 
-    &:hover{
+    &:hover {
         background-image: linear-gradient(to left,
-        var(--color-primary-light), var(--color-primary-dark));
+                var(--color-primary-light), var(--color-primary-dark));
     }
 
     &:hover &_visible {
